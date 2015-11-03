@@ -7,9 +7,10 @@ import java.util.Scanner;
  * Created by Jani on 1.11.2015.
  */
 
-//MUUTOS KOE!!
+
 public class Main {
 
+    // MUUTETTIIN LISÄÄ KOODIA!
     public static ArrayList<Person> personList;
     public static boolean exit = false;
     public static TimeSimulator time;
