@@ -6,6 +6,8 @@ import java.util.Scanner;
 /**
  * Created by Jani on 1.11.2015.
  */
+
+//MUUTOS KOE!!
 public class Main {
 
     public static ArrayList<Person> personList;
