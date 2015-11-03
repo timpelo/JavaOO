@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    // MUUTETTIIN LISÄÄ KOODIA!
     public static ArrayList<Person> personList;
     public static boolean exit = false;
     public static TimeSimulator time;
