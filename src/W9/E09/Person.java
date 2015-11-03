@@ -1,6 +1,5 @@
-package W9E10to12;
+package W9.E09;
 
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
 
@@ -11,21 +10,16 @@ public class Person {
     Random rand;
 
     private String name;
-    private boolean passedOut = false;
     private int age;
     private String gender;
     private Optional<Person> spouse;
-    private ArrayList<Person> observerList;
     private int libido;
     private int attractiveness;
-    private int alcoholLevel;
 
     public Person(String name) {
         rand = new Random();
         this.name = name;
         spouse = Optional.ofNullable(null);
-        alcoholLevel = 0;
-        observerList = new ArrayList<>();
 
         age = rand.nextInt(90) + 10;
         libido = rand.nextInt(100);
@@ -101,22 +95,6 @@ public class Person {
         }
     }
 
-    public int getAlcoholLevel() {
-        return alcoholLevel;
-    }
-
-    public void setAlcoholLevel(int alcoholLevel) {
-        this.alcoholLevel = alcoholLevel;
-    }
-
-    public boolean isPassedOut() {
-        return passedOut;
-    }
-
-    public void setPassedOut(boolean passedOut) {
-        this.passedOut = passedOut;
-    }
-
     public void printInfo() {
         System.out.println("Name: " + getName());
         System.out.println("Gender: " + getGender());
@@ -124,52 +102,5 @@ public class Person {
         getSpouse().ifPresent(spouse -> System.out.println("Spouse: " + spouse.getName()));
         System.out.println("Libido: " + getLibido());
         System.out.println("Attractiveness: " + getAttractiveness());
-    }
-
-    public void drink() {
-        if(!isPassedOut()) {
-            alcoholLevel += 5;
-
-            if (alcoholLevel < 30) {
-                setLibido(getLibido() + 1);
-            }
-
-            if (libido > 20) {
-                notifyAllObservers();
-            }
-
-            System.out.println(getName() + " drinks!!");
-        }
-    }
-
-    public void addObserver(Person p) {
-        observerList.add(p);
-    }
-
-    public void notifyLibido(LibidoEvent e) {
-
-
-        if(!getSpouse().isPresent() && !e.getHost().getSpouse().isPresent()) {
-
-            if (e.getPrecentage() == getLibido()) {
-                setSpouse(e.getHost());
-                e.getHost().setSpouse(this);
-
-                System.out.println();
-                System.out.println();
-                System.out.println("!!!JUST MARRIED!!!");
-                System.out.println(e.getHost().getName() + " married " + this.getName());
-                System.out.println();
-                System.out.println();
-            }
-        }
-
-    }
-
-    public void notifyAllObservers() {
-
-        for(Person p: observerList) {
-            p.notifyLibido(new LibidoEvent(getLibido(), this));
-        }
     }
 }

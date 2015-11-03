@@ -1,4 +1,4 @@
-package W9E10to12;
+package W9.E10to12;
 
 import java.util.Random;
 

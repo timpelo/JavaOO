@@ -1,43 +1,37 @@
-package W9E10to12;
+package W9.E09;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
  * Created by Jani on 1.11.2015.
  */
-
-
 public class Main {
 
-    // MUUTETTIIN LISÄÄ KOODIA!
     public static ArrayList<Person> personList;
     public static boolean exit = false;
-    public static TimeSimulator time;
 
     public static void main(String[] args) {
         personList = new ArrayList<>();
-        time = new TimeSimulator(personList);
         Scanner input = new Scanner(System.in);
         int command;
 
         while(!exit) {
-            System.out.println();
             System.out.println("Enter command:");
             System.out.println("1. Create new person");
             System.out.println("2. Show all persons");
             System.out.println("3. Show detailed person info");
             System.out.println("4. Delete persons");
-            System.out.println("5. Start/Pause time");
             System.out.println("0. Exit");
-            System.out.println();
+
             do {
                 command = input.nextInt();
 
-                if(command < 1 && command > 5) {
+                if(command < 1 && command > 4) {
                     System.out.println("Give correct command (1 - 4)!");
                 }
-            } while (command < 1 && command > 5);
+            } while (command < 1 && command > 4);
 
             input.nextLine();
             executeCommand(command);
@@ -51,7 +45,6 @@ public class Main {
                 System.out.println("Enter person type:");
                 System.out.println("1. Normal person");
                 System.out.println("2. Programmer");
-                System.out.println();
 
                 int type = Integer.parseInt(askUserInput());
 
@@ -59,24 +52,10 @@ public class Main {
                 String name = askUserInput();
 
                 if(type == 1) {
-                    Person newPerson = new Person(name);
-
-                    for(Person person: personList) {
-                        newPerson.addObserver(person);
-                        person.addObserver(newPerson);
-                    }
-
-                    personList.add(newPerson);
+                    personList.add(new Person(name));
                 }
                 else if(type == 2) {
-                    Person newPerson = new Programmer(name);
-
-                    for(Person person: personList) {
-                        newPerson.addObserver(person);
-                        person.addObserver(newPerson);
-                    }
-
-                    personList.add(newPerson);
+                    personList.add(new Programmer(name));
                 }
 
                 System.out.println("New person added to the list!");
@@ -106,18 +85,12 @@ public class Main {
                 int index = Integer.parseInt(askUserInput());
                 personList.remove(index - 1);
                 break;
-            case 5:
-                time.setTimePaused(!time.isTimePaused());
-                break;
             case 0:
                 exit = true;
-                System.exit(-1);
                 break;
             default:
                 System.out.println("Command not found!");
         }
-
-        System.out.println();
     }
 
     public static String askUserInput() {
@@ -133,18 +106,14 @@ public class Main {
             System.out.println("1. Name");
             System.out.println("2. Age");
             System.out.println("3. Spouse");
-            System.out.println("4. Get drink!");
-            System.out.println("5. Wage");
+            System.out.println("4. Wage");
             System.out.println("0. Exit");
-            System.out.println();
         } else {
             System.out.println("Modify info:");
             System.out.println("1. Name");
             System.out.println("2. Age");
             System.out.println("3. Spouse");
-            System.out.println("4. Get drink!");
             System.out.println("0. Exit");
-            System.out.println();
         }
 
         int command = Integer.parseInt(askUserInput());
@@ -170,9 +139,6 @@ public class Main {
                 System.out.println("Spouse added!");
                 break;
             case 4:
-                person.drink();
-                break;
-            case 5:
                 if(person instanceof Programmer) {
                     System.out.println("Give new wage: ");
                     int wage  = Integer.parseInt(askUserInput());
@@ -186,8 +152,6 @@ public class Main {
             default:
                 System.out.println("Command not found!");
         }
-
-        System.out.println();
 
     }
 }
