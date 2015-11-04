@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 /**
@@ -13,13 +14,18 @@ import java.util.ArrayList;
 public class DrawArea extends JPanel {
     MyCircle circle;
     ArrayList<MyCircle> circleList;
-    public DrawArea() {
+    ArrayList<Wall> wallList;
+    Main host;
+
+    public DrawArea(Main host) {
+        this.host = host;
         circleList = new ArrayList<>();
+        wallList = generateWalls();
+        CircleHandler handler = new CircleHandler(this);
 
         setBackground(Color.GRAY);
-        setVisible(true);
         setFocusable(true);
-        setBounds(0, 0, 860, 860);
+        setBounds(host.getX(), host.getY(), 860, 860);
 
         setLayout(new BorderLayout());
         circleList.add(circle = new MyCircle());
@@ -52,7 +58,6 @@ public class DrawArea extends JPanel {
                 }
             }
         });
-
     }
 
     @Override
@@ -73,5 +78,27 @@ public class DrawArea extends JPanel {
 
 
         }
+    }
+
+    public ArrayList<Wall> generateWalls() {
+        ArrayList<Wall> wallList = new ArrayList<>();
+
+        Wall bottom = new Wall(0, 860, 860, 5, "bottom");
+        Wall top = new Wall(-5, 0, 860, 5, "top");
+        Wall wallLeft = new Wall(-5, 0, 5, 860, "left");
+        Wall wallRight = new Wall(860, 0, 5, 860, "right");
+
+
+        wallList.add(bottom);
+        wallList.add(top);
+        wallList.add(wallLeft);
+        wallList.add(wallRight);
+
+        System.out.println("Bottom: " + bottom.getBounds());
+        System.out.println("Top: " + top.getBounds());
+        System.out.println("WallL: " + wallLeft.getBounds());
+        System.out.println("WallR: " + wallRight.getBounds());
+
+        return wallList;
     }
 }

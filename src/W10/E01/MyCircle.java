@@ -16,14 +16,20 @@ public class MyCircle extends Circle {
     private int x;
     private int y;
     private Color color;
+    private int direcionX;
+    private int direcionY;
 
     public MyCircle() {
+        Random rand = new Random();
+
         setX(430);
         setY(430);
         setRad(20);
         setCenterY(430);
+        direcionX = rand.nextInt(10)-5;
+        direcionY = rand.nextInt(10)-5;
         color = randomColor();
-        collider.setFrame(getCenterX(), getCenterY(), getRadius(), getRadius());
+        collider.setFrame(getX(), getY(), getRadius(), getRadius());
     }
 
 
@@ -33,6 +39,7 @@ public class MyCircle extends Circle {
 
     public void setRad(int radius) {
         this.rad = radius;
+        collider.setFrame(getX(), getY(), getRad(), getRad());
     }
 
     public int getX() {
@@ -59,6 +66,14 @@ public class MyCircle extends Circle {
         this.color = color;
     }
 
+    public Ellipse2D getCollider() {
+        return collider;
+    }
+
+    public void setCollider(Ellipse2D collider) {
+        this.collider = collider;
+    }
+
     private Color randomColor() {
 
         Random rand = new Random();
@@ -67,6 +82,32 @@ public class MyCircle extends Circle {
         int b = rand.nextInt(255);
 
         return new Color(r,g,b);
+    }
+
+    public void move() {
+        setX(getX() + direcionX);
+        setY(getY() + direcionY);
+        collider.setFrame(getX(), getY(), getRad(), getRad());
+    }
+
+    public void changeDirection(String wallTag) {
+
+        switch (wallTag) {
+
+            case "top":
+                direcionY = -direcionY;
+                break;
+            case "bottom":
+                direcionY = -direcionY;
+                break;
+            case "left":
+                direcionX = -direcionX;
+                break;
+            case "right":
+                direcionX = -direcionX;
+                break;
+
+        }
     }
 }
 

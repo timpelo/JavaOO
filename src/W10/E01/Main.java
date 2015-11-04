@@ -9,11 +9,12 @@ import java.awt.*;
 public class Main extends JFrame{
 
     public Main() {
-        setBounds(100, 100, 860, 860);
+        //setBounds(100, 100, 860, 860);
         setResizable(false);
         setTitle("BallApp");
         setFocusable(true);
         setVisible(true);
+        setLayout(new BorderLayout());
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -22,8 +23,10 @@ public class Main extends JFrame{
     public static void main(String[] args) {
 
         Main window = new Main();
-        DrawArea panel = new DrawArea();
+        DrawArea panel = new DrawArea(window);
         window.add(panel, BorderLayout.CENTER);
+        window.setBounds(100, 100, 860, 860);
+        panel.setVisible(true);
 
     }
 }
