@@ -14,13 +14,16 @@ public class Main extends JFrame{
         setTitle("BallApp");
         setFocusable(true);
         setVisible(true);
-        DrawArea panel = new DrawArea();
-        add(panel, BorderLayout.CENTER);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
     public static void main(String[] args) {
 
         Main window = new Main();
+        DrawArea panel = new DrawArea();
+        window.add(panel, BorderLayout.CENTER);
 
     }
 }
