@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * Created by Jani on 3.11.2015.
  */
 public class DrawArea extends JPanel {
-    MyCircle circle;
     ArrayList<MyCircle> circleList;
     ArrayList<Wall> wallList;
     Main host;
@@ -28,13 +27,12 @@ public class DrawArea extends JPanel {
         setBounds(host.getX(), host.getY(), 860, 860);
 
         setLayout(new BorderLayout());
-        circleList.add(circle = new MyCircle());
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                circleList.add(new MyCircle());
+                circleList.add(new MyCircle(e.getX(), e.getY()));
             }
         });
 

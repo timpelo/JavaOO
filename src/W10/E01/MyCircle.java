@@ -19,11 +19,11 @@ public class MyCircle extends Circle {
     private int direcionX;
     private int direcionY;
 
-    public MyCircle() {
+    public MyCircle(int x, int y) {
         Random rand = new Random();
+        setX(x);
+        setY(y);
 
-        setX(430);
-        setY(430);
         setRad(20);
         setCenterY(430);
         direcionX = rand.nextInt(10)-5;
