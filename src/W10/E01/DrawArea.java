@@ -24,7 +24,7 @@ public class DrawArea extends JPanel {
 
         setBackground(Color.GRAY);
         setFocusable(true);
-        setBounds(host.getX(), host.getY(), 860, 860);
+        setBounds(host.getX(), host.getY(), 1280, 720);
 
         setLayout(new BorderLayout());
 
@@ -81,10 +81,10 @@ public class DrawArea extends JPanel {
     public ArrayList<Wall> generateWalls() {
         ArrayList<Wall> wallList = new ArrayList<>();
 
-        Wall bottom = new Wall(0, 860, 860, 5, "bottom");
-        Wall top = new Wall(-5, 0, 860, 5, "top");
-        Wall wallLeft = new Wall(-5, 0, 5, 860, "left");
-        Wall wallRight = new Wall(860, 0, 5, 860, "right");
+        Wall bottom = new Wall(0, 720, 1280, 5, "bottom");
+        Wall top = new Wall(-5, 0, 1280, 5, "top");
+        Wall wallLeft = new Wall(-5, 0, 5, 720, "left");
+        Wall wallRight = new Wall(1280, 0, 5, 720, "right");
 
 
         wallList.add(bottom);

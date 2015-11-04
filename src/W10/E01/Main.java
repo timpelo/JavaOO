@@ -25,7 +25,7 @@ public class Main extends JFrame{
         Main window = new Main();
         DrawArea panel = new DrawArea(window);
         window.add(panel, BorderLayout.CENTER);
-        window.setBounds(100, 100, 860, 860);
+        window.setBounds(100, 100, 1280, 720);
         panel.setVisible(true);
 
     }
