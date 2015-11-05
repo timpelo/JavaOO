@@ -81,10 +81,10 @@ public class DrawArea extends JPanel {
     public ArrayList<Wall> generateWalls() {
         ArrayList<Wall> wallList = new ArrayList<>();
 
-        Wall bottom = new Wall(0, 720, 1280, 5, "bottom");
-        Wall top = new Wall(-5, 0, 1280, 5, "top");
-        Wall wallLeft = new Wall(-5, 0, 5, 720, "left");
-        Wall wallRight = new Wall(1280, 0, 5, 720, "right");
+        Wall bottom = new Wall(0, 720, 1280, 10, "bottom");
+        Wall top = new Wall(-10, 0, 1280, 10, "top");
+        Wall wallLeft = new Wall(-10, 0, 10, 720, "left");
+        Wall wallRight = new Wall(1290, 0, 10, 720, "right");
 
 
         wallList.add(bottom);

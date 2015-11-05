@@ -26,8 +26,12 @@ public class MyCircle extends Circle {
 
         setRad(20);
         setCenterY(430);
-        direcionX = rand.nextInt(10)-5;
-        direcionY = rand.nextInt(10)-5;
+
+        while(direcionX == 0 || direcionY == 0) {
+            direcionX = rand.nextInt(10) - 5;
+            direcionY = rand.nextInt(10) - 5;
+        }
+
         color = randomColor();
         collider.setFrame(getX(), getY(), getRadius(), getRadius());
     }
