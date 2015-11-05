@@ -41,8 +41,6 @@ public class ServerListener implements Runnable{
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 }

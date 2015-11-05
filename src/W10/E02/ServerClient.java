@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,7 +29,6 @@ public class ServerClient implements Runnable {
         }
 
         (new Thread(this)).start();
-
     }
 
     public void sendMessage(String message) {
@@ -44,6 +42,7 @@ public class ServerClient implements Runnable {
             String inputString;
 
             try {
+
                 while ((inputString = in.readLine()) != null) {
 
                     if(inputString.equals("exit")) {
@@ -60,7 +59,6 @@ public class ServerClient implements Runnable {
                 timeOut(e);
             }
         }
-
     }
 
     public void removeClient(ServerClient client) {
@@ -68,12 +66,11 @@ public class ServerClient implements Runnable {
     }
 
     public synchronized void timeOut(IOException e) {
+
         if (e instanceof SocketException || e == null) {
             System.out.println("Client Disconnected!");
 
-
             for (int i = 0; i < clientList.size(); i++) {
-
                 ServerClient client = clientList.get(i);
 
                 if (client != this) {
@@ -83,7 +80,6 @@ public class ServerClient implements Runnable {
                 finalize();
                 clientList.remove(this);
             }
-
         }
     }
 

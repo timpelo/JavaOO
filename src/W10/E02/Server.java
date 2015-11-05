@@ -18,7 +18,6 @@ public class Server {
     public static void main(String[] args) {
 
         final int SERVERPORT = 5091;
-        boolean serverOk = false;
         List<ServerClient> clientList = new ArrayList<>();
 
         ServerSocket serverSocket = null;
@@ -27,27 +26,14 @@ public class Server {
         PrintWriter out = null;
         BufferedReader in = null;
 
-
         try {
-
             serverSocket = new ServerSocket(SERVERPORT);
-
             searchClients(clientList, serverSocket);
 
-
-            serverOk = true;
-
             closeConnections(serverSocket, clientSocket, out, in);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
     }
 
     private static void closeConnections(ServerSocket server, Socket client, PrintWriter out, BufferedReader in) {
@@ -78,6 +64,7 @@ public class Server {
     private static void searchClients (List<ServerClient> clientList, ServerSocket serverSocket) {
         Thread t1 = new Thread();
         t1.start();
+
         while (true) {
 
             try{
@@ -88,8 +75,6 @@ public class Server {
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 }
