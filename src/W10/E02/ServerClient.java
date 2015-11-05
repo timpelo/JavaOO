@@ -46,6 +46,10 @@ public class ServerClient implements Runnable {
             try {
                 while ((inputString = in.readLine()) != null) {
 
+                    if(inputString.equals("exit")) {
+                        System.out.println("User has left!");
+                        timeOut(null);
+                    }
                     synchronized (this) {
                         for (ServerClient client : clientList) {
                             client.sendMessage(inputString);
@@ -53,21 +57,7 @@ public class ServerClient implements Runnable {
                     }
                 }
             } catch (IOException e) {
-
-                if(e instanceof SocketException) {
-                    System.out.println("Client Disconnected!");
-
-                    synchronized (this) {
-                        for (ServerClient client : clientList) {
-
-                            if (client != this) {
-                                client.removeClient(this);
-                            }
-
-                            clientList.remove(this);
-                        }
-                    }
-                }
+                timeOut(e);
             }
         }
 
@@ -75,5 +65,46 @@ public class ServerClient implements Runnable {
 
     public void removeClient(ServerClient client) {
         clientList.remove(client);
+    }
+
+    public synchronized void timeOut(IOException e) {
+        if (e instanceof SocketException || e == null) {
+            System.out.println("Client Disconnected!");
+
+
+            for (int i = 0; i < clientList.size(); i++) {
+
+                ServerClient client = clientList.get(i);
+
+                if (client != this) {
+                    client.removeClient(this);
+                }
+
+                finalize();
+                clientList.remove(this);
+            }
+
+        }
+    }
+
+    @Override
+    public void finalize() {
+
+        try {
+
+            if(in != null) {
+                in.close();
+            }
+
+            if(out != null) {
+                out.close();
+            }
+
+            if(socket != null) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
