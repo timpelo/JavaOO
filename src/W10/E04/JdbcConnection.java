@@ -69,7 +69,7 @@ public class JdbcConnection{
         return index;
     }
 
-    private void closeConnection() throws SQLException{
+    public void closeConnection() throws SQLException{
         jdbcRs.close();
         con.close();
     }

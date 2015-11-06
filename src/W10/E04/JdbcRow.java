@@ -49,7 +49,12 @@ public class JdbcRow {
             }
         }
 
-
-
+        if(database != null) {
+            try {
+                database.closeConnection();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
