@@ -23,7 +23,9 @@ public class JdbcRow {
         }
 
         while(!exit && database != null) {
-            System.out.println("Welcome to emplyee database. Please give command:");
+            System.out.println(
+                    "Welcome to emplyee database. Please give command:"
+            );
             System.out.println("1. Show employees");
             System.out.println("2. Add employee");
             System.out.println("3. Exit");

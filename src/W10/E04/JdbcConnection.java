@@ -21,9 +21,9 @@ public class JdbcConnection{
         //  url info for db connection
         String url =
                 "jdbc:mysql://mydb.tamk.fi/"
-                        + "dbe4jtimon1"                  // Your database
-                        + "?user=e4jtimon"                 // Your login name (foo)
-                        + "&password=H4Wo12H8"             // Your mysql pw (bar)
+                        + "dbe4jtimon1"                //database
+                        + "?user=e4jtimon"             //user
+                        + "&password=H4Wo12H8"         //password
                 ;
 
         // Loads the driver
